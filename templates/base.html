@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Better Earth Workplace{% endblock %} | Sustainability Certifications</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Inline SVG icon helpers */
+        .ico { display: inline-flex; align-items: center; }
+        .ico svg { width: 1em; height: 1em; fill: currentColor; }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="container">
+        <a href="{{ url_for('home') }}" class="navbar-brand">
+            <span class="brand-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66C7.72 17.84 9.64 12 17 10V14l7-7-7-7v4z M6.78 19.22C7.76 16.56 9.18 13 12 11c-1.1.27-2.14.72-3.08 1.33C7.46 9.5 9.3 7.5 12 6.5V4c-5 1-9 5.5-9 11 0 .68.07 1.35.2 2 .22-.64.48-1.26.78-1.78z"/></svg>
+            </span>
+            Better Earth Workplace
+        </a>
+        <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="{{ url_for('home') }}" class="{% if request.endpoint == 'home' %}active{% endif %}">Home</a>
+            <div class="dropdown">
+                <a href="{{ url_for('certifications') }}" class="dropdown-btn {% if request.endpoint in ['certifications','certification_detail'] %}active{% endif %}">Certifications</a>
+                <div class="dropdown-menu">
+                    <div class="dm-label">ESG & Compliance</div>
+                    <a href="{{ url_for('certification_detail', slug='esg-compliance') }}">ESG Compliance</a>
+                    <a href="{{ url_for('certification_detail', slug='esg-rating') }}">ESG Rating & Scorecard</a>
+                    <a href="{{ url_for('certification_detail', slug='brsr-compliance') }}">BRSR Compliance</a>
+                    <a href="{{ url_for('certification_detail', slug='csr-impact') }}">CSR Impact</a>
+                    <div class="dm-divider"></div>
+                    <div class="dm-label">Environmental</div>
+                    <a href="{{ url_for('certification_detail', slug='carbon-neutral') }}">Carbon Neutral</a>
+                    <a href="{{ url_for('certification_detail', slug='water-neutral') }}">Water Neutral</a>
+                    <div class="dm-divider"></div>
+                    <div class="dm-label">Industry</div>
+                    <a href="{{ url_for('certification_detail', slug='green-manufacturing') }}">Green Manufacturing</a>
+                    <a href="{{ url_for('certification_detail', slug='sustainable-supply-chain') }}">Sustainable Supply Chain</a>
+                    <a href="{{ url_for('certification_detail', slug='green-real-estate') }}">Green Real Estate</a>
+                    <a href="{{ url_for('certification_detail', slug='green-hospitality') }}">Green Hospitality</a>
+                    <a href="{{ url_for('certification_detail', slug='sustainable-agriculture') }}">Sustainable Agriculture</a>
+                    <div class="dm-divider"></div>
+                    <div class="dm-label">Product & Resource</div>
+                    <a href="{{ url_for('certification_detail', slug='sustainable-product') }}">Sustainable Product</a>
+                    <a href="{{ url_for('certification_detail', slug='sustainable-packaging') }}">Sustainable Packaging</a>
+                    <a href="{{ url_for('certification_detail', slug='green-business') }}">Green Business</a>
+                </div>
+            </div>
+            <a href="{{ url_for('industries') }}" class="{% if request.endpoint == 'industries' %}active{% endif %}">Industries</a>
+            <a href="{{ url_for('contact') }}" class="nav-cta">Contact Us</a>
+        </div>
+    </div>
+</nav>
+
+{% block content %}{% endblock %}
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <h4>Better Earth Workplace</h4>
+                <p>Certifying Sustainable Businesses. Building Responsible Futures. We help organizations achieve recognized sustainability certifications across environmental, social, and governance dimensions.</p>
+            </div>
+            <div>
+                <h4>Certifications</h4>
+                <ul>
+                    <li><a href="{{ url_for('certification_detail', slug='green-business') }}">Green Business</a></li>
+                    <li><a href="{{ url_for('certification_detail', slug='carbon-neutral') }}">Carbon Neutral</a></li>
+                    <li><a href="{{ url_for('certification_detail', slug='esg-compliance') }}">ESG Compliance</a></li>
+                    <li><a href="{{ url_for('certification_detail', slug='green-manufacturing') }}">Green Manufacturing</a></li>
+                    <li><a href="{{ url_for('certifications') }}">View All</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('certifications') }}">Certifications</a></li>
+                    <li><a href="{{ url_for('industries') }}">Industries</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="{{ url_for('contact') }}">Book Consultation</a></li>
+                    <li><a href="{{ url_for('contact') }}">Request Proposal</a></li>
+                    <li><a href="mailto:info@betterearthworkplace.com">Email Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Better Earth Workplace. All rights reserved.</span>
+            <span>Sustainability Certification Authority</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+// Mobile nav toggle
+function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+}
+// Mobile dropdown toggle
+document.querySelectorAll('.dropdown > .dropdown-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            this.parentElement.classList.toggle('open');
+        }
+    });
+});
+// Accordion
+document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.accordion-btn');
+    if (!btn) return;
+    const item = btn.parentElement;
+    const body = item.querySelector('.accordion-body');
+    const inner = body.querySelector('.accordion-body-inner');
+    if (item.classList.contains('open')) {
+        body.style.maxHeight = '0';
+        item.classList.remove('open');
+    } else {
+        // Close others in same accordion
+        item.parentElement.querySelectorAll('.accordion-item.open').forEach(i => {
+            i.querySelector('.accordion-body').style.maxHeight = '0';
+            i.classList.remove('open');
+        });
+        item.classList.add('open');
+        body.style.maxHeight = inner.scrollHeight + 'px';
+    }
+});
+// Page nav active on scroll
+(function() {
+    const navLinks = document.querySelectorAll('.page-nav-inner a');
+    if (!navLinks.length) return;
+    window.addEventListener('scroll', function() {
+        let current = '';
+        navLinks.forEach(link => {
+            const id = link.getAttribute('href').substring(1);
+            const section = document.getElementById(id);
+            if (section && section.offsetTop - 150 <= window.scrollY) {
+                current = id;
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+        });
+    });
+})();
+</script>
+</body>
+</html>

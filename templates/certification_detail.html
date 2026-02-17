@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block title %}{{ cert.title }}{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="cert-hero">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="{{ url_for('home') }}">Home</a> &rsaquo;
+            <a href="{{ url_for('certifications') }}">Certifications</a> &rsaquo;
+            {{ cert.title }}
+        </div>
+        <h1>{{ cert.title }}</h1>
+        <p>{{ cert.short }}</p>
+    </div>
+</section>
+
+<!-- In-page Navigation -->
+<div class="page-nav">
+    <div class="container">
+        <div class="page-nav-inner">
+            <a href="#applicable">Who Can Apply</a>
+            <a href="#criteria">Criteria</a>
+            <a href="#process">Process</a>
+            <a href="#benefits">Benefits</a>
+            <a href="#levels">Levels</a>
+            <a href="#faq">FAQ</a>
+        </div>
+    </div>
+</div>
+
+<!-- Applicable -->
+<section class="detail-section" id="applicable">
+    <div class="container">
+        <h2>Who Can Apply</h2>
+        <p style="margin-bottom:20px;">{{ cert.applicable }}</p>
+        <ul class="suitable-list">
+            {% for item in cert.suitable_for %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+        <div class="note-box mt-2">{{ cert.applicable_note }}</div>
+    </div>
+</section>
+
+<!-- Criteria -->
+<section class="detail-section" id="criteria">
+    <div class="container">
+        <h2>Certification Criteria</h2>
+        <div class="criteria-grid">
+            {% for group in cert.criteria %}
+            <div class="criteria-card">
+                <h4>{{ group.title }}</h4>
+                <ul>
+                    {% for item in group['items'] %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="note-box mt-2">{{ cert.criteria_note }}</div>
+    </div>
+</section>
+
+<!-- Process -->
+<section class="detail-section" id="process">
+    <div class="container">
+        <h2>Certification Process</h2>
+        <div class="steps">
+            {% for step in cert.process %}
+            <div class="step">
+                <div class="step-num">{{ loop.index }}</div>
+                <div class="step-content">
+                    <h4>{{ step.step }}</h4>
+                    <p>{{ step.desc }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Benefits -->
+<section class="detail-section" id="benefits">
+    <div class="container">
+        <h2>Certification Benefits</h2>
+        <div class="benefits-grid">
+            {% for benefit in cert.benefits %}
+            <div class="benefit-card">
+                <h4>{{ benefit.title }}</h4>
+                <ul>
+                    {% for item in benefit['items'] %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Levels -->
+<section class="detail-section" id="levels">
+    <div class="container">
+        <h2>Certification Levels</h2>
+        <div class="levels-grid">
+            {% for level in cert.levels %}
+            <div class="level-card {{ level.name|lower }}">
+                <h4>{{ level.label }}</h4>
+                {% if level.score %}<div class="level-score">Score: {{ level.score }}</div>{% endif %}
+                <p>{{ level.desc }}</p>
+                <div class="level-focus">{{ level.focus }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="detail-section" id="faq">
+    <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="accordion">
+            {% for item in cert.faq %}
+            <div class="accordion-item">
+                <button class="accordion-btn">{{ item.q }}</button>
+                <div class="accordion-body">
+                    <div class="accordion-body-inner">{{ item.a }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="background:linear-gradient(135deg,var(--green-dark),var(--green-mid));color:white;text-align:center;">
+    <div class="container">
+        <h2 style="font-size:1.6rem;margin-bottom:12px;">Ready for {{ cert.title }}?</h2>
+        <p style="opacity:0.9;max-width:500px;margin:0 auto 24px;">Start your certification journey today. Our team will guide you through the entire process.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary">Book Consultation</a>
+        &nbsp;
+        <a href="{{ url_for('certifications') }}" class="btn btn-outline" style="border-color:rgba(255,255,255,0.5);color:white;">All Certifications</a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!-- Hero with image -->
+<section class="hero" style="padding:0;">
+    <div class="container">
+        <div class="hero-split">
+            <div class="hero-text">
+                <h1>Certifying Sustainable Businesses.<br>Building Responsible Futures.</h1>
+                <p>Better Earth Workplace is a sustainability certification authority helping organizations measure, improve, and validate their environmental, social, and governance performance.</p>
+                <div>
+                    <a href="{{ url_for('certifications') }}" class="btn btn-primary">Explore Certifications</a>
+                    &nbsp;
+                    <a href="{{ url_for('contact') }}" class="btn btn-outline" style="border-color:rgba(255,255,255,0.5);color:white;">Book Consultation</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="num">15+</div>
+                        <div class="label">Certifications Offered</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="num">7+</div>
+                        <div class="label">Industries Served</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="num">4</div>
+                        <div class="label">Certification Levels</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="num">6</div>
+                        <div class="label">Step Process</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=700&fit=crop&crop=faces" alt="Small group of professionals in a friendly discussion">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trusted By / Social Proof with people images -->
+<section class="section" style="padding:40px 0; border-bottom:1px solid var(--border);">
+    <div class="container">
+        <div class="people-banner">
+            <div class="people-avatars">
+                <img src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=80&h=80&fit=crop&crop=face" alt="Indian business leader">
+                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop&crop=face" alt="Indian corporate professional">
+                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=80&h=80&fit=crop&crop=face" alt="Indian industry expert">
+                <img src="https://images.unsplash.com/photo-1580894894513-541e068a3e2b?w=80&h=80&fit=crop&crop=face" alt="Indian sustainability consultant">
+                <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?w=80&h=80&fit=crop&crop=face" alt="Indian environmental auditor">
+            </div>
+            <div class="people-banner-text">
+                <strong>Trusted by sustainability leaders</strong><br>
+                <span style="color:var(--text-light); font-size:0.9rem;">Organizations across manufacturing, real estate, hospitality, and agriculture rely on our certifications.</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Overview of Certifications -->
+<section class="section" id="certifications-overview">
+    <div class="container">
+        <h2 class="section-title">Our Certification Portfolio</h2>
+        <p class="section-subtitle">Comprehensive sustainability certifications across ESG, environmental, industry, and product dimensions.</p>
+        <div class="card-grid">
+            {% for cat in categories %}
+            <div class="card">
+                <div class="card-icon">
+                    {% if cat.id == 'esg' %}
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                    {% elif cat.id == 'environmental' %}
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    {% elif cat.id == 'industry' %}
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M22 10V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v4l2 6h16l2-6zM4 6h16v3.28l-1.56 4.72H5.56L4 9.28V6zm4 12h8v2H8z"/></svg>
+                    {% else %}
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm3-6c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/></svg>
+                    {% endif %}
+                </div>
+                <h3>{{ cat.title }}</h3>
+                <p>{{ cat.desc }}</p>
+                <div style="margin-top:8px;">
+                    {% for slug in cat.certs[:3] %}
+                    <a href="{{ url_for('certification_detail', slug=slug) }}" class="card-link" style="display:block;margin-bottom:4px;">{{ certifications[slug].title }}</a>
+                    {% endfor %}
+                    {% if cat.certs|length > 3 %}
+                    <a href="{{ url_for('certifications') }}#{{ cat.id }}" class="card-link" style="display:block;margin-top:8px;color:var(--green-dark);">+{{ cat.certs|length - 3 }} more</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Why Certification Matters - with image -->
+<section class="section section-alt" id="why-matters">
+    <div class="container">
+        <div class="split-section">
+            <div class="split-image">
+                <img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=560&h=460&fit=crop&crop=faces" alt="Two colleagues discussing sustainability plans" style="border-radius:var(--radius);">
+            </div>
+            <div class="split-content">
+                <h2 class="section-title">Why Certification Matters</h2>
+                <p class="section-subtitle" style="margin-bottom:20px;">Sustainability certification delivers measurable value across compliance, brand, financial, and environmental dimensions.</p>
+                <div class="why-list">
+                    <div class="why-item">
+                        <div class="why-icon" style="background:#e8f5e9;color:var(--green-mid);">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93z"/></svg>
+                        </div>
+                        <div>
+                            <strong>Environmental Impact</strong>
+                            <p style="font-size:0.88rem;color:var(--text-light);margin:0;">Reduce carbon footprint, conserve water, and adopt renewable practices.</p>
+                        </div>
+                    </div>
+                    <div class="why-item">
+                        <div class="why-icon" style="background:#e3f2fd;color:#1976d2;">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+                        </div>
+                        <div>
+                            <strong>Business Growth</strong>
+                            <p style="font-size:0.88rem;color:var(--text-light);margin:0;">Attract ESG investors, access green finance, and gain global competitive edge.</p>
+                        </div>
+                    </div>
+                    <div class="why-item">
+                        <div class="why-icon" style="background:#fff3e0;color:#e65100;">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+                        </div>
+                        <div>
+                            <strong>Compliance & Risk</strong>
+                            <p style="font-size:0.88rem;color:var(--text-light);margin:0;">Align with regulations, prepare for ESG disclosures, reduce risks.</p>
+                        </div>
+                    </div>
+                    <div class="why-item">
+                        <div class="why-icon" style="background:#fce4ec;color:#c62828;">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+                        </div>
+                        <div>
+                            <strong>Brand & Reputation</strong>
+                            <p style="font-size:0.88rem;color:var(--text-light);margin:0;">Enhance credibility, build stakeholder trust, and differentiate from competitors.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process in 4 Steps - with image -->
+<section class="section" id="process">
+    <div class="container">
+        <div class="split-section reverse">
+            <div class="split-content">
+                <h2 class="section-title">Certification Process</h2>
+                <p class="section-subtitle" style="margin-bottom:24px;">A structured, transparent process from application to certification.</p>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num">1</div>
+                        <div class="step-content">
+                            <h4>Apply</h4>
+                            <p>Submit your application with business details and sustainability information through our online portal.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">2</div>
+                        <div class="step-content">
+                            <h4>Assessment</h4>
+                            <p>Our expert auditors review documentation, conduct management interviews, and perform site inspections as required.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">3</div>
+                        <div class="step-content">
+                            <h4>Evaluation & Scoring</h4>
+                            <p>Your organization is evaluated against defined sustainability benchmarks and receives a detailed performance scorecard.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">4</div>
+                        <div class="step-content">
+                            <h4>Certification</h4>
+                            <p>Upon successful evaluation, receive your certification with official seal, digital badge, and public registry listing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="split-image">
+                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=560&h=500&fit=crop&crop=faces" alt="Three professionals reviewing certification documents together" style="border-radius:var(--radius);">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team / Experts section with photo grid -->
+<section class="section section-alt">
+    <div class="container text-center">
+        <h2 class="section-title">Our Expertise, Your Sustainability</h2>
+        <p class="section-subtitle">A dedicated team of sustainability auditors, ESG consultants, and industry experts committed to driving responsible business practices.</p>
+        <div class="photo-grid">
+            <div class="photo-card">
+                <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=380&h=260&fit=crop" alt="Two professionals discussing sustainability assessment">
+                <div class="photo-label">Collaborative Assessment</div>
+            </div>
+            <div class="photo-card">
+                <img src="https://images.unsplash.com/photo-1573497491765-dccce02b29df?w=380&h=260&fit=crop&crop=faces" alt="Expert consulting with client on certification">
+                <div class="photo-label">Expert Consulting</div>
+            </div>
+            <div class="photo-card">
+                <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=380&h=260&fit=crop&crop=faces" alt="Small team working together on sustainability solutions">
+                <div class="photo-label">Dedicated Support</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Industries Served -->
+<section class="section" id="industries">
+    <div class="container">
+        <h2 class="section-title">Industries We Serve</h2>
+        <p class="section-subtitle">Sustainability certifications tailored for every sector.</p>
+        <div class="card-grid">
+            {% for ind in industries %}
+            <div class="industry-card">
+                <div class="industry-icon">
+                    {% if ind.icon == 'factory' %}
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M22 10V6a2 2 0 00-2-2H4a2 2 0 00-2 2v4l2 6h16l2-6zM4 6h16v3.28l-1.56 4.72H5.56L4 9.28V6zm4 12h8v2H8z"/></svg>
+                    {% elif ind.icon == 'building' %}
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M15 11V5l-3-3-3 3v2H3v14h18V11h-6zm-8 8H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm6 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm6 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>
+                    {% elif ind.icon == 'hotel' %}
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
+                    {% elif ind.icon == 'wheat' %}
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12.5 6.9c1.78 0 3.24-1.32 3.48-3.03C14.46 2.64 12.54 2 12.5 2c-.04 0-1.96.64-3.48 1.87C9.26 5.58 10.72 6.9 12.5 6.9zM12.5 8c-1.78 0-3.5.94-3.5 3 0 1.52.89 2.82 2.17 3.43-.06.26-.17.52-.17.57 0 2 1.5 5 1.5 5s1.5-3 1.5-5c0-.05-.11-.31-.17-.57A3.494 3.494 0 0016 11c0-2.06-1.72-3-3.5-3z"/></svg>
+                    {% elif ind.icon == 'truck' %}
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                    {% elif ind.icon == 'briefcase' %}
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                    {% else %}
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93z"/></svg>
+                    {% endif %}
+                </div>
+                <h3>{{ ind.name }}</h3>
+                <p>{{ ind.desc }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-3">
+            <a href="{{ url_for('industries') }}" class="btn btn-green">Learn More About Industries</a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA with background image -->
+<section class="cta-image-section">
+    <div class="cta-image-overlay"></div>
+    <div class="container" style="position:relative;z-index:2;">
+        <h2 style="font-size:1.8rem; margin-bottom:12px; color:white;">Ready to Get Certified?</h2>
+        <p style="opacity:0.9; max-width:500px; margin:0 auto 24px; color:white;">Take the first step towards sustainability certification. Book a consultation or request a proposal today.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary">Book Consultation</a>
+        &nbsp;
+        <a href="{{ url_for('certifications') }}" class="btn btn-outline" style="border-color:rgba(255,255,255,0.5);color:white;">View All Certifications</a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block title %}Industries We Serve{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="cert-hero">
+    <div class="container">
+        <h1>Industries We Serve</h1>
+        <p>Sustainability certifications tailored for every sector - from manufacturing and real estate to agriculture and logistics.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="card-grid">
+            {% for ind in industries %}
+            <div class="industry-card">
+                <div class="industry-icon">
+                    {% if ind.icon == 'factory' %}
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M22 10V6a2 2 0 00-2-2H4a2 2 0 00-2 2v4l2 6h16l2-6zM8 18h8v2H8z"/></svg>
+                    {% elif ind.icon == 'building' %}
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M15 11V5l-3-3-3 3v2H3v14h18V11h-6zm-8 8H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm6 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm6 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>
+                    {% elif ind.icon == 'hotel' %}
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
+                    {% elif ind.icon == 'wheat' %}
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12.5 6.9c1.78 0 3.24-1.32 3.48-3.03C14.46 2.64 12.54 2 12.5 2s-1.96.64-3.48 1.87C9.26 5.58 10.72 6.9 12.5 6.9zM12.5 8c-1.78 0-3.5.94-3.5 3 0 1.52.89 2.82 2.17 3.43-.06.26-.17.52-.17.57 0 2 1.5 5 1.5 5s1.5-3 1.5-5c0-.05-.11-.31-.17-.57A3.494 3.494 0 0016 11c0-2.06-1.72-3-3.5-3z"/></svg>
+                    {% elif ind.icon == 'truck' %}
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                    {% elif ind.icon == 'briefcase' %}
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                    {% else %}
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93z"/></svg>
+                    {% endif %}
+                </div>
+                <h3>{{ ind.name }}</h3>
+                <p>{{ ind.desc }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Relevant Certifications by Industry -->
+<section class="section section-alt">
+    <div class="container">
+        <h2 class="section-title">Certifications by Industry</h2>
+        <p class="section-subtitle">Find the right certification for your sector.</p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:20px;">
+            <div class="card">
+                <h3>Manufacturing</h3>
+                <ul style="margin-top:10px;">
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='green-manufacturing') }}" class="card-link">Green Manufacturing Certification</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='sustainable-supply-chain') }}" class="card-link">Sustainable Supply Chain</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='sustainable-product') }}" class="card-link">Sustainable Product</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='sustainable-packaging') }}" class="card-link">Sustainable Packaging</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='carbon-neutral') }}" class="card-link">Carbon Neutral</a></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Real Estate & Infrastructure</h3>
+                <ul style="margin-top:10px;">
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='green-real-estate') }}" class="card-link">Green Real Estate Certification</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='water-neutral') }}" class="card-link">Water Neutral</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='carbon-neutral') }}" class="card-link">Carbon Neutral</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='esg-compliance') }}" class="card-link">ESG Compliance</a></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Hospitality & Tourism</h3>
+                <ul style="margin-top:10px;">
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='green-hospitality') }}" class="card-link">Green Hospitality Certification</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='water-neutral') }}" class="card-link">Water Neutral</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='carbon-neutral') }}" class="card-link">Carbon Neutral</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='sustainable-packaging') }}" class="card-link">Sustainable Packaging</a></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Agriculture & Food</h3>
+                <ul style="margin-top:10px;">
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='sustainable-agriculture') }}" class="card-link">Sustainable Agriculture</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='sustainable-product') }}" class="card-link">Sustainable Product</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='water-neutral') }}" class="card-link">Water Neutral</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='sustainable-supply-chain') }}" class="card-link">Sustainable Supply Chain</a></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Corporates & IT Services</h3>
+                <ul style="margin-top:10px;">
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='green-business') }}" class="card-link">Green Business Certification</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='esg-compliance') }}" class="card-link">ESG Compliance</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='carbon-neutral') }}" class="card-link">Carbon Neutral</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='csr-impact') }}" class="card-link">CSR Impact</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='brsr-compliance') }}" class="card-link">BRSR Compliance</a></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Export & Global Trade</h3>
+                <ul style="margin-top:10px;">
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='sustainable-supply-chain') }}" class="card-link">Sustainable Supply Chain</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='sustainable-product') }}" class="card-link">Sustainable Product</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='sustainable-packaging') }}" class="card-link">Sustainable Packaging</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='carbon-neutral') }}" class="card-link">Carbon Neutral</a></li>
+                    <li style="margin-bottom:8px;"><a href="{{ url_for('certification_detail', slug='esg-rating') }}" class="card-link">ESG Rating & Scorecard</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="background:linear-gradient(135deg,var(--green-dark),var(--green-mid));color:white;text-align:center;">
+    <div class="container">
+        <h2 style="font-size:1.6rem;margin-bottom:12px;">Don't See Your Industry?</h2>
+        <p style="opacity:0.9;max-width:500px;margin:0 auto 24px;">Our certification framework adapts to businesses across all sectors. Contact us to discuss your specific requirements.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary">Get in Touch</a>
+    </div>
+</section>
+{% endblock %}
