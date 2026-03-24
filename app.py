@@ -1,4 +1,4 @@
-from flask import Flask, render_template, abort
+from flask import Flask, render_template, abort, send_from_directory
 
 app = Flask(__name__)
 
@@ -733,6 +733,16 @@ INDUSTRIES = [
     {"name": "Corporates & Services", "icon": "briefcase", "desc": "ESG and Green Business Certifications help corporate offices and service companies demonstrate sustainability commitment and compliance readiness."},
     {"name": "Export Businesses", "icon": "globe", "desc": "Sustainability certifications strengthen export credibility, meet international buyer expectations, and open access to global green markets."}
 ]
+
+
+@app.route("/robots.txt")
+def robots():
+    return send_from_directory(app.static_folder, "robots.txt")
+
+
+@app.route("/sitemap.xml")
+def sitemap():
+    return send_from_directory(app.static_folder, "sitemap.xml", mimetype="application/xml")
 
 
 @app.route("/")
