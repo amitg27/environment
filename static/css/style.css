@@ -55,21 +55,11 @@ ul { list-style: none; }
 .navbar-brand {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--green-dark);
 }
-.navbar-brand .brand-icon {
-    width: 36px;
-    height: 36px;
-    background: var(--green-dark);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.1rem;
+.navbar-brand .brand-logo {
+    height: 48px;
+    width: auto;
+    border-radius: 6px;
 }
 .nav-links {
     display: flex;
