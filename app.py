@@ -1,3 +1,4 @@
+#claude --resume 8ba6daad-eb72-4a21-8fc6-8291b836c929
 from flask import Flask, render_template, abort, send_from_directory
 
 app = Flask(__name__)
@@ -733,6 +734,11 @@ INDUSTRIES = [
     {"name": "Corporates & Services", "icon": "briefcase", "desc": "ESG and Green Business Certifications help corporate offices and service companies demonstrate sustainability commitment and compliance readiness."},
     {"name": "Export Businesses", "icon": "globe", "desc": "Sustainability certifications strengthen export credibility, meet international buyer expectations, and open access to global green markets."}
 ]
+
+
+@app.route("/favicon.ico")
+def favicon():
+    return send_from_directory(app.static_folder, "favicon.ico")
 
 
 @app.route("/robots.txt")
