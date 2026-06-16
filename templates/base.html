@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Better Earth Workplace{% endblock %} | Sustainability Certifications</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ url_for('static', filename='images/android-chrome-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ url_for('static', filename='images/android-chrome-512x512.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
         /* Inline SVG icon helpers */
@@ -17,10 +23,7 @@
 <nav class="navbar">
     <div class="container">
         <a href="{{ url_for('home') }}" class="navbar-brand">
-            <span class="brand-icon">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66C7.72 17.84 9.64 12 17 10V14l7-7-7-7v4z M6.78 19.22C7.76 16.56 9.18 13 12 11c-1.1.27-2.14.72-3.08 1.33C7.46 9.5 9.3 7.5 12 6.5V4c-5 1-9 5.5-9 11 0 .68.07 1.35.2 2 .22-.64.48-1.26.78-1.78z"/></svg>
-            </span>
-            Better Earth Workplace
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Better Earth Workplace" class="brand-logo">
         </a>
         <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu">
             <span></span><span></span><span></span>
@@ -93,7 +96,7 @@
                 <ul>
                     <li><a href="{{ url_for('contact') }}">Book Consultation</a></li>
                     <li><a href="{{ url_for('contact') }}">Request Proposal</a></li>
-                    <li><a href="mailto:info@betterearthworkplace.com">Email Us</a></li>
+                    <li><a href="mailto:certify@betterearthworkplace.com">Email Us</a></li>
                 </ul>
             </div>
         </div>
